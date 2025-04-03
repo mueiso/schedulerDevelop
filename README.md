@@ -40,12 +40,12 @@ JDK version 17
 
 * _**Schedule**_
 
-|     기능     | Method | Endpoint(URL) | Path Variable | Request Parameter | Request Body                                                                           | Response                                                                                                                                                                      |     상태코드     |
-|:----------:|:------:|:-------------:|:-------------:|:-----------------:|:---------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------:|
-|   스케줄 생성   |  POST  |  /schedules   |       X       |         X         | { "user_name": "유저명",<br/>"task_title": "할일 제목",<br/>"task_content": "할일 내용" }         | { "schedule_id": 1,<br/>"user_name": "유저명",<br/>"task_title": "할일 제목",<br/>"task_content": "할일 내용",<br/>"created_at": 작성된 시간,<br/>"updated_at": 수정된 시간 }                      |  200: 정상등록   |
-| 스케줄 단건 조회  |  GET   |     /{id}     |   id (Long)   |         X         | X                                                                                      | { "schedule_id": 1,<br/>"user_name": "유저명",<br/>"task_title": 제목1,<br/>"task_content": 할 일 내용1 }                                                                              |  200: 정상조회   |
-| 스케줄 수정(전체) |  PUT   |     /{id}     |   id (Long)   |         X         | { "task_title": "수정된 제목",<br/>"task_content": "수정된 내용" }                               | { "schedule_id": 1,<br/>"user_name": "유저명",<br/>"task_title": "수정된 제목",<br/>"task_content": "수정된 내용" }                                                                        |  200: 정상수정   |
-|   스케줄 삭제   | DELETE |     /{id}     |   id (Long)   |         X         | X                                                                                      | { "msg": "일정 삭제 완료" }                                                                                                                                                         |  200: 정상삭제   |
+|     기능     | Method | Endpoint(URL) | Path Variable | Request Parameter | Request Body                                                                           | Response                                                                                                                                                 |     상태코드     |
+|:----------:|:------:|:-------------:|:-------------:|:-----------------:|:---------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|:------------:|
+|   스케줄 생성   |  POST  |  /schedules   |       X       |         X         | { "user_name": "유저명",<br/>"task_title": "할일 제목",<br/>"task_content": "할일 내용" }         | { "schedule_id": 1,<br/>"user_name": "유저명",<br/>"task_title": "할일 제목",<br/>"task_content": "할일 내용",<br/>"created_at": 작성된 시간,<br/>"updated_at": 수정된 시간 } |  200: 정상등록   |
+| 스케줄 단건 조회  |  GET   |     /{id}     |   id (Long)   |         X         | X                                                                                      | { "schedule_id": 1,<br/>"user_name": "유저명",<br/>"task_title": 제목1,<br/>"task_content": 할 일 내용1 }                                                         |  200: 정상조회   |
+| 스케줄 수정(전체) |  PUT   |     /{id}     |   id (Long)   |         X         | { "task_title": "수정된 제목",<br/>"task_content": "수정된 내용" }                               | { "schedule_id": 1,<br/>"user_name": "유저명",<br/>"task_title": "수정된 제목",<br/>"task_content": "수정된 내용",<br/>"updated_at": 수정된 시간 }                         |  200: 정상수정   |
+|   스케줄 삭제   | DELETE |     /{id}     |   id (Long)   |         X         | X                                                                                      | { "msg": "일정 삭제 완료" }                                                                                                                                    |  200: 정상삭제   |
 
 -----
 
@@ -64,4 +64,4 @@ JDK version 17
 
 ## ✅ ERD
 
-![Image](https://github.com/user-attachments/assets/f38a6bfc-a6f1-4224-8d0e-4f33c1bc5e33)
+![Image](https://github.com/user-attachments/assets/7039b6e6-63cb-4a07-a957-8eedc86a8141)
