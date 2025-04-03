@@ -17,13 +17,13 @@ import java.util.Optional;
 public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 
 
-    /**
-     * JPA 사용한 CRUD
+    /*
+     JPA 사용한 CRUD
      */
+
 //    @Repository
 //    @Transactional
 //    public class ScheduleRepository
-
 
 //    @PersistenceContext
 //    private EntityManager entityManager;
