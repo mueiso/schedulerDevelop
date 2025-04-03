@@ -2,8 +2,6 @@ package com.myproject.schedulerdevelop.controller;
 
 import com.myproject.schedulerdevelop.entity.Schedule;
 import com.myproject.schedulerdevelop.service.ScheduleService;
-import com.myproject.schedulerdevelop.service.UserService;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,13 +41,13 @@ public class ScheduleController {
     // 전체 스케줄 조회
     @GetMapping
     public ResponseEntity<List<Schedule>> getAllSchedules() {
-        List<Schedule> scheduleList = scheduleService.getAllSchedule();
+        List<Schedule> scheduleList = scheduleService.findAllSchedule();
         return new ResponseEntity<>(scheduleList, HttpStatus.OK);
     }
 
     // 단일 스케줄 조회
     @GetMapping("/{id}")
-    public ResponseEntity<Schedule> etScheduleById(@PathVariable Long id) {
+    public ResponseEntity<Schedule> getScheduleById(@PathVariable Long id) {
         Optional<Schedule> schedule = scheduleService.findScheduleById(id);
         if (schedule.isPresent()) {
             return new ResponseEntity<>(schedule.get(), HttpStatus.OK);
@@ -74,6 +72,7 @@ public class ScheduleController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSchedule (@PathVariable Long id) {
         Optional<Schedule> schedule = scheduleService.findScheduleById(id);
+        scheduleService.deleteScheduleById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         /*
          * 왜 앱 실행 실패하는지 물어보기

@@ -1,9 +1,7 @@
 package com.myproject.schedulerdevelop.repository;
 
-import jakarta.transaction.Transactional;
-import org.springframework.stereotype.Repository;
+import com.myproject.schedulerdevelop.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-@Transactional
-public class UserRepository {
+public interface UserRepository extends JpaRepository<User, Long> {
 }

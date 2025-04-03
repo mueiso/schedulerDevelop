@@ -30,7 +30,7 @@ public class ScheduleService {
 
     // 모든 스케줄 조회
     @Transactional
-    public List<Schedule> getAllSchedule() {
+    public List<Schedule> findAllSchedule() {
 //        scheduleRepository.findAll();
 //        // 받는다
 //        // findAll 이 List<T> 타입이기 때문에
