@@ -1,20 +1,21 @@
 package com.myproject.schedulerdevelop.repository;
 
 import com.myproject.schedulerdevelop.entity.Schedule;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+//import jakarta.persistence.EntityManager;
+//import jakarta.persistence.PersistenceContext;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
+//import org.springframework.stereotype.Repository;
+//import org.springframework.transaction.annotation.Transactional;
+//
+//import java.util.List;
+//import java.util.Optional;
 
 
 /**
  * SimpleJPARepository 사용한 CRUD
  */
 public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
+
 
 
     /*
@@ -29,7 +30,7 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 //    private EntityManager entityManager;
 
 //    // 스케줄 생성
-//    public Schedule createUser(Schedule schedule) {
+//    public Schedule createSchedule(Schedule schedule) {
 //
 //        if (schedule.getScheduleId() != null) {
 //            throw new IllegalArgumentException("새로운 스케줄 생성 시 ID를 지정할 수 없습니다.");
