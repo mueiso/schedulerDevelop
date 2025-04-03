@@ -2,25 +2,26 @@ package com.myproject.schedulerdevelop.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Cleanup;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends BaseEntity {
+public class Schedule extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userId;
+    private Long ScheduleId;
 
     @Column
-    private String userName;
+    private Long taskTitle;
 
     @Column
-    private String email;
+    private Long taskContent;
+
 
 
 
