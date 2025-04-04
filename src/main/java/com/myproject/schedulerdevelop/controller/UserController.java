@@ -24,7 +24,7 @@ public class UserController {
     // 유저 생성 - POST
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        User savedUser = userService.saveUser();
+        User savedUser = userService.saveUser(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
@@ -51,7 +51,7 @@ public class UserController {
     public ResponseEntity<User> updateUser (@PathVariable Long id, @RequestBody User user) {
         Optional<User> existingUser = userService.findUserById(id);
         if (existingUser.isPresent()) {
-           User updatedUser = userService.saveUser();
+           User updatedUser = userService.saveUser(user);
            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

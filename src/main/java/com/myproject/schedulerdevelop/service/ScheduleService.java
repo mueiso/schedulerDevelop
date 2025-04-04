@@ -1,11 +1,14 @@
 package com.myproject.schedulerdevelop.service;
 
+import com.myproject.schedulerdevelop.dto.ScheduleRequestDto;
 import com.myproject.schedulerdevelop.entity.Schedule;
 import com.myproject.schedulerdevelop.repository.ScheduleRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 public class ScheduleService {
@@ -20,12 +23,21 @@ public class ScheduleService {
 
     // 스케줄 저장
     @Transactional
-    public Schedule saveSchedule() {
-        Schedule schedule = new Schedule();
+    public Schedule saveSchedule(Schedule schedule) {
 
         // new schedule 을 저장
 //            scheduleRepository.save(schedule);
             return scheduleRepository.save(schedule);
+    }
+
+    // 스케줄 업데이트
+    @Transactional
+    public Schedule updateSchedule(ScheduleRequestDto requestDto, Long id) {
+        Schedule existingSchedule = scheduleRepository.findById(id).orElseThrow(() ->new RuntimeException());  // 받다
+        existingSchedule.update(requestDto);  // 필드 바꾸기
+        Schedule updatedSchedule = scheduleRepository.save(existingSchedule);  // 받다 - 저장
+
+        return updatedSchedule;
     }
 
     // 모든 스케줄 조회

@@ -1,5 +1,7 @@
 package com.myproject.schedulerdevelop.controller;
 
+import com.myproject.schedulerdevelop.dto.ScheduleRequestDto;
+import com.myproject.schedulerdevelop.dto.ScheduleResponseDto;
 import com.myproject.schedulerdevelop.entity.Schedule;
 import com.myproject.schedulerdevelop.service.ScheduleService;
 import org.springframework.http.HttpStatus;
@@ -34,7 +36,7 @@ public class ScheduleController {
     // 스케줄 생성
     @PostMapping
     public ResponseEntity<Schedule> createSchedule (@RequestBody Schedule schedule) {
-        Schedule savedSchedule = scheduleService.saveSchedule();
+        Schedule savedSchedule = scheduleService.saveSchedule(schedule);
         return new ResponseEntity<>(savedSchedule, HttpStatus.CREATED);
     }
 
@@ -58,14 +60,11 @@ public class ScheduleController {
 
     // 스케줄 수정 (업데이트)
     @PutMapping ("/{id}")
-    public ResponseEntity<Schedule> updateSchedule (@PathVariable Long id, @RequestBody Schedule schedule) {
-        Optional<Schedule> existingSchedule = scheduleService.findScheduleById(id);
-        if (existingSchedule.isPresent()) {
-            Schedule updatedSchedule = scheduleService.saveSchedule();
-            return new ResponseEntity<>(updatedSchedule, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<ScheduleResponseDto> updateSchedule (@PathVariable Long id, @RequestBody ScheduleRequestDto requestDto) {
+        Schedule updatedSchedule = scheduleService.updateSchedule(requestDto, id);  // 스케줄 타입의 업데이티드스케줄 그릇에 받다
+        // 리스폰스디티오 타입의 dto 그릇에 새로운 리스폰스디티오 객체 생성할 때 업뎃된 스케줄을 넣어줘서 생성
+        ScheduleResponseDto responseDto = new ScheduleResponseDto(updatedSchedule);
+            return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
     // 스케줄 삭제
@@ -75,8 +74,7 @@ public class ScheduleController {
         scheduleService.deleteScheduleById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         /*
-         * 왜 앱 실행 실패하는지 물어보기
-         * GlovalExceptionHandler에 @RestControllerAdvice 붙이고 컨트롤러 클래스에 @RestController 붙였으니까
+         * GlobalExceptionHandler 에 @RestControllerAdvice 붙이고 컨트롤러 클래스에 @RestController 붙였으니까
          * 아래의 예외 처리 필요 없는지 물어보기
          */
 //        if (schedule.isPresent()) {

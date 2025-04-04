@@ -21,9 +21,7 @@ public class UserService {
 
     // 유저 저장
     @Transactional
-    public User saveUser() {
-        User user = new User();
-
+    public User saveUser(User user) {
         return userRepository.save(user);
     }
 
@@ -37,6 +35,16 @@ public class UserService {
     @Transactional
     public Optional<User> findUserById (Long id) {
         return userRepository.findById(id);
+    }
+
+    // 유저 수정 - 업데이트
+    @Transactional
+    public User updateUser(Long id, User user) {
+        Optional<User> existingUser = userRepository.findById(id);
+        if(existingUser.isPresent()) {
+            User updatedUser = existingUser.get();
+            return userRepository.save(updatedUser);
+        } throw new RuntimeException("업데이트 할 유저가 없습니다.");
     }
 
     // 유저 삭제
